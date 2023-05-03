@@ -23,5 +23,9 @@ function validatePost(req, res, next) {
 
 // do not forget to expose these functions to other modules
 
-Server.use(logger);
-server.use(validateUser)
+module.exports = {
+  logger,
+  validateUserId,
+  validateUser,
+  validatePost,
+}
