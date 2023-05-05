@@ -16,15 +16,15 @@ async function validateUserId(req, res, next) {
     const user = await User.getById(req.params.id)
     if (!user) {
       res.status(404).json({
-        message: 'No such user'
+        message: 'user not found'
       })
     } else {
       req.user = user
       next()
     }
   } catch (err) {
-    res.status(500).json({
-      message: 'Problem finding user'
+    res.status(400).json({
+      message: 'missing required name'
     })
   }
 }
@@ -47,10 +47,10 @@ function validatePost(req, res, next) {
   const { text } = req.body
   if (!text || !text.trim()) {
     res.status(400).json({
-      message: 'Missing required name field'
+      message: 'Missing required text field'
     })
   } else {
-    req.name = name.trim()
+    req.text = text.trim()
     next()
   }
 }
